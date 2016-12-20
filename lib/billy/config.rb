@@ -35,7 +35,7 @@ module Billy
       @non_whitelisted_requests_disabled = false
       @cache_path = File.join(Dir.tmpdir, 'puffing-billy')
       @proxy_host = Socket.ip_address_list[1].ip_address
-      @proxy_port = 1000
+      @proxy_port = 10000
       @proxied_request_inactivity_timeout = 10 # defaults from https://github.com/igrigorik/em-http-request/wiki/Redirects-and-Timeouts
       @proxied_request_connect_timeout = 5
       @strip_query_params = true
