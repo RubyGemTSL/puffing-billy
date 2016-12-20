@@ -1,5 +1,6 @@
 require 'logger'
 require 'tmpdir'
+require 'socket'
 
 module Billy
   class Config
