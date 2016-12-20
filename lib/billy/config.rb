@@ -1,10 +1,9 @@
 require 'logger'
 require 'tmpdir'
-require 'socket'
 
 module Billy
   class Config
-    DEFAULT_WHITELIST = []
+    DEFAULT_WHITELIST = ['127.0.0.1', 'localhost']
     RANDOM_AVAILABLE_PORT = 0 # https://github.com/eventmachine/eventmachine/wiki/FAQ#wiki-can-i-start-a-server-on-a-random-available-port
 
     attr_accessor :logger, :cache, :cache_request_headers, :whitelist, :path_blacklist, :ignore_params,
@@ -34,8 +33,8 @@ module Billy
       @non_successful_error_level = :warn
       @non_whitelisted_requests_disabled = false
       @cache_path = File.join(Dir.tmpdir, 'puffing-billy')
-      @proxy_host = Socket.ip_address_list[1].ip_address
-      @proxy_port = 9000..10000
+      @proxy_host = 'localhost'
+      @proxy_port = RANDOM_AVAILABLE_PORT
       @proxied_request_inactivity_timeout = 10 # defaults from https://github.com/igrigorik/em-http-request/wiki/Redirects-and-Timeouts
       @proxied_request_connect_timeout = 5
       @strip_query_params = true
